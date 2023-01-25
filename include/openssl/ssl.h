@@ -1312,6 +1312,9 @@ DECLARE_PEM_rw(SSL_SESSION, SSL_SESSION)
 # define SSL_CTRL_GET_OQS_KEM_CURVE_ID           134
 # define SSL_CTRL_GET_VERIFY_CERT_STORE          137
 # define SSL_CTRL_GET_CHAIN_CERT_STORE           138
+# define SSL_CTRL_GET_USED_GROUP_ID              139
+# define SSL_CTRL_GET_USED_GROUP_NID             140
+# define SSL_CTRL_GET_USED_SIGALG_NID            141
 # define SSL_CERT_SET_FIRST                      1
 # define SSL_CERT_SET_NEXT                       2
 # define SSL_CERT_SET_SERVER                     3
@@ -1470,6 +1473,12 @@ DECLARE_PEM_rw(SSL_SESSION, SSL_SESSION)
         SSL_ctrl(s, SSL_CTRL_GET_MAX_PROTO_VERSION, 0, NULL)
 #define SSL_get_oqs_kem_curve_id(s) \
         SSL_ctrl(s, SSL_CTRL_GET_OQS_KEM_CURVE_ID, 0, NULL)
+#define SSL_get_used_group_id(s) \
+        SSL_ctrl(s, SSL_CTRL_GET_USED_GROUP_ID, 0, NULL)
+#define SSL_get_used_group_nid(s) \
+        SSL_ctrl(s, SSL_CTRL_GET_USED_GROUP_NID, 0, NULL)
+#define SSL_get_used_sigalg_nid(s) \
+        SSL_ctrl(s, SSL_CTRL_GET_USED_SIGALG_NID, 0, NULL)
 
 /* Backwards compatibility, original 1.1.0 names */
 # define SSL_CTRL_GET_SERVER_TMP_KEY \
@@ -1485,6 +1494,8 @@ DECLARE_PEM_rw(SSL_SESSION, SSL_SESSION)
 # define SSL_CTRL_SET_CURVES           SSL_CTRL_SET_GROUPS
 # define SSL_CTRL_SET_CURVES_LIST      SSL_CTRL_SET_GROUPS_LIST
 # define SSL_CTRL_GET_SHARED_CURVE     SSL_CTRL_GET_SHARED_GROUP
+# define SSL_CTRL_GET_USED_CURVE_ID    SSL_CTRL_GET_USED_GROUP_ID
+# define SSL_CTRL_GET_USED_CURVE_NID   SSL_CTRL_GET_USED_GROUP_NID
 
 # define SSL_get1_curves               SSL_get1_groups
 # define SSL_CTX_set1_curves           SSL_CTX_set1_groups
@@ -1492,7 +1503,8 @@ DECLARE_PEM_rw(SSL_SESSION, SSL_SESSION)
 # define SSL_set1_curves               SSL_set1_groups
 # define SSL_set1_curves_list          SSL_set1_groups_list
 # define SSL_get_shared_curve          SSL_get_shared_group
-
+# define SSL_get_used_curve_id         SSL_get_used_group_id
+# define SSL_get_used_curve_nid        SSL_get_used_group_nid
 
 # if OPENSSL_API_COMPAT < 0x10100000L
 /* Provide some compatibility macros for removed functionality. */
